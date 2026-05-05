@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[600px] w-full items-end overflow-hidden bg-cover bg-fixed bg-[center_top] md:min-h-[650px] lg:min-h-[700px]"
+      className="relative flex h-screen min-h-[600px] w-full items-end overflow-hidden bg-cover bg-fixed bg-[center_top]"
       style={{ backgroundImage: "url('/images/16X24-Print-8-2.png')" }}
     >
       <div aria-hidden className="absolute inset-0 bg-black/15" />
