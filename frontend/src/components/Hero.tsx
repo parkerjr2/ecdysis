@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[600px] w-full items-end overflow-hidden bg-cover bg-fixed bg-[center_top] md:min-h-[700px] lg:min-h-[900px]"
+      className="relative flex min-h-[600px] w-full items-end overflow-hidden bg-cover bg-fixed bg-[center_top] md:min-h-[650px] lg:min-h-[700px]"
       style={{ backgroundImage: "url('/images/16X24-Print-8-2.png')" }}
     >
       <div aria-hidden className="absolute inset-0 bg-black/15" />
@@ -32,7 +32,7 @@ export function Hero() {
         />
       </motion.div>
 
-      <div className="relative z-10 flex w-full items-end px-6 pb-16 md:pl-[45px] md:pr-[60px] md:pb-[115px]">
+      <div className="relative z-10 flex w-full items-end px-6 pb-16 md:pl-[45px] md:pr-[60px] md:pb-[65px]">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
