@@ -1,0 +1,1436 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-raleway), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-oswald), var(--font-raleway), ui-sans-serif, sans-serif;
+  --font-script: var(--font-phenix), "Brush Script MT", cursive;
+  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-display);
+
+  /* Ecdysis brand palette */
+  --color-ec-dark: #181818;
+  --color-ec-darker: #0f0f0f;
+  --color-ec-cream: #dddad5;
+  --color-ec-paper: #ecece;
+  --color-ec-tan: #d19f68;
+  --color-ec-tan-soft: #cfb395;
+  --color-ec-tan-active: #e0c2a1;
+  --color-ec-tan-eyebrow: #c39f78;
+  --color-ec-green: #284b34;
+  --color-ec-green-light: #648a6e;
+  --color-ec-white: #ffffff;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #181818;
+  --foreground: #ffffff;
+  --card: #181818;
+  --card-foreground: #ffffff;
+  --popover: #181818;
+  --popover-foreground: #ffffff;
+  --primary: #d19f68;
+  --primary-foreground: #181818;
+  --secondary: #284b34;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #9ca3af;
+  --accent: #d19f68;
+  --accent-foreground: #181818;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #d19f68;
+  --chart-1: #d19f68;
+  --chart-2: #284b34;
+  --chart-3: #648a6e;
+  --chart-4: #cfb395;
+  --chart-5: #ffffff;
+  --radius: 0.25rem;
+  --sidebar: #181818;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #d19f68;
+  --sidebar-primary-foreground: #181818;
+  --sidebar-accent: #284b34;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #d19f68;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-script);
+    font-weight: 400;
+  }
+}
+
+@layer utilities {
+  .font-script { font-family: var(--font-script); }
+  .font-display { font-family: var(--font-display); }
+  .font-sans { font-family: var(--font-sans); }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    text-transform: none;
+    letter-spacing: 4.5px;
+    color: var(--color-ec-tan-eyebrow);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  .ec-button {
+    display: inline-block;
+    background: var(--color-ec-green);
+    color: var(--color-ec-white);
+    font-family: var(--font-script);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 30px;
+    padding: 14px 45px;
+    border-radius: 0;
+    text-transform: none;
+    transform: scale(1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .ec-button:hover,
+  .ec-button:focus {
+    background-color: rgb(59, 108, 75);
+    transform: scale(1.1);
+  }
+
+  /* Service icon box: 65x65 square with a thin outlined "shadow" duplicate
+     offset 5px down-left, replicating the live ekits-iconbox treatment. */
+  .service-icon-box {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  .service-icon-box::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: -5px;
+    width: 5px;
+    height: 100%;
+    border-left: 1px solid #ebebeb;
+    border-top: 1px solid #ebebeb;
+    transition: background 0.3s;
+  }
+  .service-icon-box::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: -5px;
+    width: 100%;
+    height: 5px;
+    border-right: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    transition: background 0.3s;
+  }
+  .service-icon-box:hover {
+    background-color: var(--color-ec-green-light);
+  }
+  .service-icon-box:hover::before,
+  .service-icon-box:hover::after {
+    background-color: #ebebeb;
+  }
+
+  /* Icon shape rendered via CSS mask so the container's background-color
+     becomes the icon color (allows green→dark swap on hover). */
+  .service-icon-mask {
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-ec-green-light);
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    transition: background-color 0.3s;
+  }
+  .service-icon-box:hover .service-icon-mask {
+    background-color: #333;
+  }
+}
+
+/* ===========================================================================
+   Booking Widget — mirrors live (https://ecdysisbarbershop.com/booking/)
+   Values are absolute px so the widget is independent of root font-size.
+   ========================================================================= */
+@layer components {
+  .ecdy-booking {
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family:
+      -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial,
+      sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 33px;
+    padding: 20px;
+  }
+
+  /* Progress nav: 5 columns with numbered circles above each label. */
+  .ecdy-booking__progress {
+    margin-bottom: 22.5px;
+  }
+  .ecdy-booking__progress ol {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 4px;
+    counter-reset: step;
+  }
+  .ecdy-booking__step {
+    flex: 1;
+    text-align: center;
+    padding-top: 36px;
+    font-size: 10.625px;
+    line-height: 15.9375px;
+    font-weight: 300;
+    color: #6b7280;
+    position: relative;
+    counter-increment: step;
+  }
+  .ecdy-booking__step::before {
+    content: counter(step);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    font-size: 8.5px;
+    font-weight: 600;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+  .ecdy-booking__step.is-active {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+  .ecdy-booking__step.is-active::before {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  .ecdy-booking__step.is-completed {
+    color: #1a1a1a;
+  }
+  .ecdy-booking__step.is-completed::before {
+    content: "\2713";
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  /* Before You Book block */
+  .ecdy-byb {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    color: #000;
+  }
+  .ecdy-byb__subtitle {
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c39f78;
+    margin: 0;
+  }
+  .ecdy-byb__title {
+    font-family:
+      "Phoenix American Regular", var(--font-phenix), "Playfair Display",
+      Georgia, serif;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 72px;
+    color: #000;
+    margin: 8px 0 0 0;
+  }
+  .ecdy-byb__body {
+    margin: 30px 0 0 0;
+    text-align: left;
+    padding: 0 40px;
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 27px;
+    color: #000;
+  }
+  .ecdy-byb__body p {
+    margin: 0 0 10px 0;
+    line-height: 24px;
+  }
+  .ecdy-byb__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Client type section + panel title */
+  .ecdy-booking__client-section {
+    padding-left: 20px;
+  }
+  .ecdy-booking__panel-title {
+    font-family: var(--font-oswald), "Oswald", sans-serif;
+    font-size: 22.5px;
+    font-weight: 700;
+    line-height: 22.5px;
+    color: #000;
+    margin: 0 0 15px 0;
+  }
+
+  /* Cards (stacked vertically) */
+  .ecdy-booking__card {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 7.5px;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+  .ecdy-booking__card:hover,
+  .ecdy-booking__card:focus-visible {
+    border-color: #1a1a1a;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    outline: none;
+  }
+  .ecdy-booking__card.is-selected {
+    border-color: #1a1a1a;
+    border-left-width: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+  .ecdy-booking__card-title {
+    font-size: 13.75px;
+    font-weight: 600;
+    line-height: 20.625px;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+  }
+  .ecdy-booking__card-desc {
+    font-size: 13.75px;
+    font-weight: 300;
+    line-height: 20.625px;
+    color: #6b7280;
+    margin: 4px 0 0 0;
+  }
+
+  /* ── Service step (Step 2) ───────────────────────────────────── */
+  .ecdy-booking__service-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .ecdy-booking__service-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: min(800px, 70vh);
+  }
+  .ecdy-booking__service-main .ecdy-booking__tabs-wrapper {
+    flex-shrink: 0;
+    background: #ffffff;
+    z-index: 1;
+  }
+  .ecdy-booking__service-scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: calc(100vh - 300px);
+  }
+  .ecdy-booking__service-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  .ecdy-booking__service-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  .ecdy-booking__service-scroll::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  .ecdy-booking__service-scroll::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+  .ecdy-booking__service-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+  }
+
+  /* Category tabs */
+  .ecdy-booking__tabs-wrapper {
+    padding-top: 2px;
+  }
+  .ecdy-booking__tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 15px;
+  }
+  .ecdy-booking__tab {
+    padding: 12px 28px;
+    border: 1px solid #e5e7eb;
+    border-radius: 100px;
+    background: transparent;
+    color: #1a1a1a;
+    font-size: 11.875px;
+    font-weight: 500;
+    line-height: 17.8125px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      border-color 150ms ease;
+  }
+  .ecdy-booking__tab:hover {
+    border-color: #1a1a1a;
+  }
+  .ecdy-booking__tab.is-active {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+  }
+
+  /* More overflow dropdown */
+  .ecdy-booking__more-container {
+    position: relative;
+    display: inline-block;
+  }
+  .ecdy-booking__more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ecdy-booking__more-btn svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 150ms ease;
+  }
+  .ecdy-booking__more-container.is-open .ecdy-booking__more-btn svg {
+    transform: rotate(180deg);
+  }
+  .ecdy-booking__more-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 220px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    overflow: hidden;
+  }
+  .ecdy-booking__more-container.is-open .ecdy-booking__more-dropdown {
+    display: block;
+  }
+  .ecdy-booking__more-item {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    color: #1a1a1a;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+  .ecdy-booking__more-item + .ecdy-booking__more-item {
+    border-top: 1px solid #e5e7eb;
+  }
+  .ecdy-booking__more-item:hover {
+    background: #f5f5f5;
+  }
+  .ecdy-booking__more-item.is-active {
+    font-weight: 600;
+  }
+
+  /* Service rows */
+  .ecdy-booking__service-row {
+    display: flex;
+    align-items: center;
+    padding: 24px 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .ecdy-booking__service-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .ecdy-booking__service-name {
+    display: block;
+    font-size: 13.75px;
+    font-weight: 700;
+    line-height: 20.625px;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__service-desc {
+    display: block;
+    font-size: 13.75px;
+    font-weight: 400;
+    line-height: 17.875px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .ecdy-booking__service-meta {
+    text-align: right;
+    font-size: 13.75px;
+    font-weight: 300;
+    line-height: 20.625px;
+    color: #444;
+    white-space: nowrap;
+    margin-left: 16px;
+    flex-shrink: 0;
+  }
+  .ecdy-booking__btn--add {
+    flex-shrink: 0;
+    margin-left: 24px;
+    padding: 8px 20px;
+    font-size: 10px;
+    font-weight: 600;
+    border: 2px solid #1a1a1a;
+    border-radius: 8px;
+    background: transparent;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+  .ecdy-booking__btn--add:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  .ecdy-booking__btn--add.is-added {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  .ecdy-booking__blocked-badge {
+    flex-shrink: 0;
+    margin-left: 24px;
+    padding: 8px 14px;
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6b7280;
+    background: #f5f5f5;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .ecdy-booking__cart-item-required {
+    font-size: 9px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* Barber picker (Step 2 sub-screen, after Add) */
+  .ecdy-booking__barber-picker {
+    display: block;
+    max-width: 640px;
+  }
+  .ecdy-booking__back-link {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 13.75px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 12px;
+  }
+  .ecdy-booking__back-link:hover {
+    color: #1a1a1a;
+  }
+  .ecdy-booking__barber-heading {
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+      sans-serif;
+    font-size: 13.75px;
+    font-weight: 700;
+    line-height: 20.625px;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+  }
+  .ecdy-booking__barber-picker .ecdy-booking__card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 7.5px;
+    cursor: pointer;
+    text-align: left;
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+  .ecdy-booking__barber-picker .ecdy-booking__card:hover,
+  .ecdy-booking__barber-picker .ecdy-booking__card:focus-visible {
+    border-color: #1a1a1a;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    outline: none;
+  }
+  .ecdy-booking__barber-picker .ecdy-booking__card-title {
+    font-size: 13.75px;
+    font-weight: 600;
+    line-height: 20.625px;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  /* Cart sidebar */
+  .ecdy-booking__cart {
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .ecdy-booking__cart.is-empty {
+    text-align: center;
+    font-size: 9.5px;
+    color: #888;
+    padding: 22px 10px;
+  }
+  .ecdy-booking__cart-heading {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin: 0 0 7.5px 0;
+  }
+  .ecdy-booking__cart-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7.5px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .ecdy-booking__cart-item:last-of-type {
+    border-bottom: none;
+  }
+  .ecdy-booking__cart-item-left {
+    flex: 1;
+    min-width: 0;
+  }
+  .ecdy-booking__cart-item-name {
+    font-size: 13.75px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+  .ecdy-booking__cart-item-meta {
+    font-size: 13.75px;
+    color: #6b7280;
+    margin-top: 3px;
+  }
+  .ecdy-booking__cart-item-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .ecdy-booking__cart-item-price {
+    font-size: 13.75px;
+    font-weight: 600;
+  }
+  .ecdy-booking__btn--remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 6px;
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .ecdy-booking__btn--remove:hover {
+    color: #1a1a1a;
+  }
+  .ecdy-booking__cart-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 7.5px;
+    margin-top: 4px;
+    font-weight: 700;
+    font-size: 13.75px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  /* Generic action buttons */
+  .ecdy-booking__btn {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 11.25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      opacity 150ms ease;
+    border: 1px solid transparent;
+    font-family: inherit;
+    text-align: center;
+    display: inline-block;
+  }
+  .ecdy-booking__btn--primary {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+  }
+  .ecdy-booking__btn--primary:hover:not(:disabled) {
+    background: #000;
+  }
+  .ecdy-booking__btn--primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .ecdy-booking__btn--secondary {
+    background: transparent;
+    color: #1a1a1a;
+    border-color: #e5e7eb;
+  }
+  .ecdy-booking__btn--secondary:hover {
+    border-color: #6b7280;
+  }
+
+  .ecdy-booking__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 22.5px;
+    gap: 7.5px;
+  }
+  .ecdy-booking__actions--sidebar {
+    margin-top: 7.5px;
+  }
+  .ecdy-booking__service-sidebar .ecdy-booking__btn--secondary,
+  .ecdy-booking__service-sidebar .ecdy-booking__btn--primary {
+    width: 100%;
+  }
+  .ecdy-booking__cart .ecdy-booking__btn--primary {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  /* Loading spinner inside the widget */
+  .ecdy-booking__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: #6b7280;
+    font-size: 13.75px;
+  }
+  .ecdy-booking__error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    padding: 12px 16px;
+    color: #b91c1c;
+    font-size: 13.75px;
+    margin-bottom: 15px;
+  }
+
+  /* ── Date & Time step (Step 3) ───────────────────────────────── */
+  .ecdy-booking__datetime-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .ecdy-booking__datetime-main {
+    flex: 1;
+    min-width: 0;
+  }
+  .ecdy-booking__datetime-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+  }
+
+  /* Calendar */
+  .ecdy-booking__calendar {
+    margin-bottom: 15px;
+  }
+  .ecdy-booking__calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7.5px;
+  }
+  .ecdy-booking__calendar-title {
+    font-size: 11.25px;
+    font-weight: 600;
+    line-height: 16.875px;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__calendar-nav {
+    background: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #1a1a1a;
+    padding: 1px 6px;
+    line-height: 15px;
+    transition: border-color 150ms ease;
+  }
+  .ecdy-booking__calendar-nav:hover {
+    border-color: #1a1a1a;
+  }
+  .ecdy-booking__calendar-nav:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .ecdy-booking__calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+  }
+  .ecdy-booking__calendar-dow {
+    font-size: 8px;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 6px 0;
+    line-height: 12px;
+    text-transform: uppercase;
+  }
+  .ecdy-booking__calendar-day {
+    padding: 10px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    background: none;
+    color: #1a1a1a;
+    border: 0;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  .ecdy-booking__calendar-day:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  .ecdy-booking__calendar-day.is-today {
+    box-shadow: inset 0 0 0 1px #1a1a1a;
+  }
+  .ecdy-booking__calendar-day.is-selected {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+  .ecdy-booking__calendar-day.is-disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+    font-weight: 300;
+  }
+  .ecdy-booking__calendar-day.is-empty {
+    visibility: hidden;
+  }
+
+  /* Go-to-next-available pill */
+  .ecdy-booking__btn--next-available {
+    margin-top: 7.5px;
+    padding: 5px 10px;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 13.5px;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background: transparent;
+    color: #1a1a1a;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  .ecdy-booking__btn--next-available:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  /* Slots */
+  .ecdy-booking__slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+  }
+  .ecdy-booking__slot-group {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .ecdy-booking__slot-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .ecdy-booking__slot-group-empty {
+    font-size: 9.5px;
+    color: #6b7280;
+    font-style: italic;
+    padding: 4px 0;
+  }
+  .ecdy-booking__slot-group-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ecdy-booking__slot {
+    padding: 12px 24px;
+    border: 1px solid #1a1a1a;
+    border-radius: 100px;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 11.25px;
+    font-weight: 300;
+    line-height: 16.875px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+  .ecdy-booking__slot:hover {
+    background: #f5f5f5;
+  }
+  .ecdy-booking__slot.is-selected {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  /* Appointment summary sidebar */
+  .ecdy-booking__appt-summary {
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .ecdy-booking__appt-summary-title {
+    font-size: 12.75px;
+    font-weight: 600;
+    line-height: 12.75px;
+    color: #000;
+    margin: 0 0 7.5px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .ecdy-booking__appt-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px 0;
+  }
+  .ecdy-booking__appt-summary-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 22.5px;
+    color: #222;
+  }
+  .ecdy-booking__appt-summary-meta {
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 20.25px;
+    color: #444;
+  }
+
+  /* ── Details step (Step 4) ───────────────────────────────────── */
+  .ecdy-booking__details-step .ecdy-booking__panel-title {
+    font-size: 28.125px;
+    line-height: 28.125px;
+  }
+
+  .ecdy-booking__field {
+    margin-bottom: 15px;
+    display: block;
+  }
+  .ecdy-booking__name-row {
+    display: flex;
+    gap: 7.5px;
+  }
+  .ecdy-booking__name-row .ecdy-booking__field {
+    flex: 1;
+    min-width: 0;
+  }
+  .ecdy-booking__label {
+    display: block;
+    font-size: 14.0625px;
+    font-weight: 500;
+    line-height: 21.0938px;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+  }
+  .ecdy-booking__input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 14.0625px;
+    font-weight: 500;
+    line-height: normal;
+    font-family: inherit;
+    color: #1a1a1a;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .ecdy-booking__input:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+  }
+  .ecdy-booking__input.has-error {
+    border-color: #dc2626;
+  }
+  .ecdy-booking__field-error {
+    color: #dc2626;
+    font-size: 11.25px;
+    font-weight: 300;
+    line-height: 16.875px;
+    margin-top: 4px;
+  }
+
+  /* Marketing consent */
+  .ecdy-booking__consent-section {
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+  .ecdy-booking__consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 7.5px;
+    font-size: 15.625px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    cursor: pointer;
+  }
+  .ecdy-booking__consent-checkbox {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    cursor: pointer;
+    accent-color: #1a1a1a;
+  }
+  .ecdy-booking__consent-disclosure {
+    font-size: 13.28125px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 7.5px 0 0 0;
+  }
+  .ecdy-booking__sms-disclaimer {
+    font-size: 13.28125px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 7.5px 0 0 0;
+  }
+
+  /* Step-4 actions: back left, next right */
+  .ecdy-booking__details-step .ecdy-booking__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7.5px;
+    margin-top: 15px;
+  }
+
+  /* ── Confirm step (Step 5) ───────────────────────────────────── */
+  .ecdy-booking__confirm-top-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .ecdy-booking__confirm-left {
+    flex: 2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ecdy-booking__confirm-left-columns {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .ecdy-booking__confirm-left-columns > * {
+    flex: 1;
+    min-width: 0;
+  }
+  .ecdy-booking__confirm-summary-col {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    background: #ffffff;
+  }
+  .ecdy-booking__confirm-summary-col .ecdy-booking__confirm-card {
+    border: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  /* Generic confirm card (contact info, policy summary inner) */
+  .ecdy-booking__confirm-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px;
+    background: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .ecdy-booking__confirm-customer-title {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+  .ecdy-booking__confirm-customer-line {
+    font-size: 13.75px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #1a1a1a;
+  }
+
+  /* Cancellation policy section */
+  .ecdy-booking__policy-section {
+    margin: 0;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+  .ecdy-booking__policy-title {
+    font-weight: 700;
+    font-size: 16.25px;
+    line-height: 1.3;
+    margin: 0 0 6px 0;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__cancel-by {
+    font-size: 11.875px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 7.5px 0;
+    padding: 6px 9px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .ecdy-booking__policy-text {
+    font-size: 12.5px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0 0 12.5px 0;
+  }
+  .ecdy-booking__required-flag {
+    display: inline;
+    font-size: inherit;
+    font-weight: 600;
+    color: #dc2626;
+    margin-left: 4px;
+  }
+  .ecdy-booking__policy-error {
+    color: #dc2626;
+    font-size: 11.25px;
+    margin-top: 4px;
+  }
+
+  /* Card-on-file form */
+  .ecdy-booking__card-form {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+  .ecdy-booking__card-form-title {
+    font-weight: 700;
+    font-size: 15.625px;
+    margin: 0 0 7.5px 0;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__card-hold-note {
+    font-size: 12.5px;
+    color: #6b7280;
+    margin: 0 0 7.5px 0;
+    line-height: 1.5;
+  }
+  .ecdy-booking__card-auth-note {
+    font-size: 11.875px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 5px 0 0 0;
+  }
+  #ecdy-card-container {
+    min-height: 0;
+  }
+
+  /* Saved cards */
+  .ecdy-booking__saved-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 7.5px;
+  }
+  .ecdy-booking__saved-card-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13.75px;
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease;
+  }
+  .ecdy-booking__saved-card-label:hover {
+    border-color: #1a1a1a;
+  }
+  .ecdy-booking__saved-card-label.is-selected {
+    border-color: #1a1a1a;
+    background: #fafafa;
+  }
+
+  /* Right column: appointment summary */
+  .ecdy-booking__confirm-sidebar-title {
+    font-weight: 600;
+    font-size: 13.75px;
+    margin: 0 0 7.5px 0;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__confirm-datetime {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15.625px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__confirm-datetime svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: #6b7280;
+  }
+  .ecdy-booking__confirm-time {
+    font-size: 13.75px;
+    color: #6b7280;
+    margin-top: 2px;
+    padding-left: 26px;
+  }
+  .ecdy-booking__confirm-est {
+    font-size: 12.5px;
+    color: #6b7280;
+    margin-top: 4px;
+    padding-left: 26px;
+  }
+  .ecdy-booking__confirm-divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 10px 0;
+  }
+  .ecdy-booking__confirm-service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .ecdy-booking__confirm-initials {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .ecdy-booking__confirm-details {
+    flex: 1;
+    min-width: 0;
+  }
+  .ecdy-booking__confirm-service-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .ecdy-booking__confirm-service-name {
+    font-weight: 600;
+    font-size: 14.375px;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__confirm-service-price {
+    font-weight: 600;
+    font-size: 14.375px;
+    color: #1a1a1a;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ecdy-booking__confirm-service-staff {
+    color: #6b7280;
+    font-size: 11.875px;
+    margin-top: 2px;
+  }
+  .ecdy-booking__confirm-totals {
+    padding-top: 4px;
+  }
+  .ecdy-booking__confirm-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.875px;
+    padding: 2px 0;
+    color: #1a1a1a;
+  }
+  .ecdy-booking__confirm-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 2px 0;
+    color: #1a1a1a;
+  }
+
+  .ecdy-booking__btn--full {
+    width: 100%;
+    margin-top: 7.5px;
+    padding: 18px 32px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  /* ── Confirmed step (success) ────────────────────────────────── */
+  .ecdy-booking__confirmed {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .ecdy-booking__confirmed-title {
+    font-family: var(--font-oswald), "Oswald", sans-serif;
+    font-size: 28.125px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a1a1a;
+    margin: 0 0 10px 0;
+  }
+  .ecdy-booking__confirmed-summary {
+    font-size: 13.75px;
+    color: #1a1a1a;
+    margin: 16px auto;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .ecdy-booking__confirmed-summary strong {
+    font-weight: 600;
+  }
+}
