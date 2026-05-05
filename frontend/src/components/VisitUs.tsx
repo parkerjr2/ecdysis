@@ -46,7 +46,7 @@ export function VisitUs({ mapSide = "left" }: Props = {}) {
         <motion.div
           {...fadeUp}
           className={`flex w-full flex-col items-stretch px-6 ${
-            mapFirst ? "md:pl-[40px] md:pr-[45px] md:order-2" : "md:pl-[72px] md:pr-[72px] md:order-1"
+            mapFirst ? "md:pl-[80px] md:pr-[80px] md:order-2" : "md:pl-[80px] md:pr-[80px] md:order-1"
           }`}
         >
           <span
@@ -64,7 +64,7 @@ export function VisitUs({ mapSide = "left" }: Props = {}) {
               <p>
                 <strong className="font-bold">Hours:</strong>
               </p>
-              <ul className="list-disc space-y-2 pl-7">
+              <ul className="list-disc space-y-2 pl-12">
                 <li>Tuesday – Saturday: 10:00 AM – 6:00 PM</li>
                 <li>Sunday &amp; Monday: Closed</li>
               </ul>
