@@ -37,7 +37,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: easeOut, delay: 0.4 }}
-          className="flex flex-col items-start gap-[28px]"
+          className="flex flex-col items-start gap-[18px]"
         >
           <h1 className="font-sans text-[28px] font-bold leading-[1] tracking-[1px] text-[#ECECEC] md:text-[32px] md:leading-[32px] lg:text-[35px] lg:leading-[35px]">
             ECDYSIS BARBERSHOP
@@ -51,7 +51,7 @@ export function Hero() {
           >
             <Link
               href="#booking"
-              className="inline-block bg-ec-green px-[45px] py-[14px] font-script text-[30px] leading-none tracking-[1px] text-white transition-colors duration-300 hover:bg-ec-green-light"
+              className="inline-block bg-ec-green px-[60px] py-[18px] font-script text-[30px] leading-none tracking-[1px] text-white transition-colors duration-300 hover:bg-ec-green-light"
             >
               BOOK NOW!
             </Link>
