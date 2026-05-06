@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 
 const easeOut = [0.25, 0.46, 0.45, 0.94] as const;
 const fadeUp = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 100 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 1.0, ease: easeOut },
+  viewport: { once: true, amount: 0.25 },
+  transition: { duration: 1.2, ease: easeOut },
 };
 
 export function AboutUs() {
