@@ -10,7 +10,7 @@ export function AboutUs() {
   return (
     <motion.section
       id="about"
-      initial={{ opacity: 0, y: 150 }}
+      initial={{ opacity: 0, y: 300 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 1.2, ease: easeOut }}
