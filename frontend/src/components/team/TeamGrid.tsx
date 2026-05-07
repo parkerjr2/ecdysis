@@ -194,20 +194,32 @@ export function TeamGrid() {
   return (
     <>
       <div aria-hidden className="h-[70px] w-full bg-ec-dark" />
-      <section className="w-full bg-ec-dark py-[15px]">
+      <motion.section
+        initial={{ opacity: 0, y: 300 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 1.2, ease: easeOut }}
+        className="w-full bg-ec-dark py-[15px]"
+      >
         <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-y-12 md:grid-cols-3 md:gap-x-0 md:gap-y-0">
           {TOP_ROW.map((m) => (
             <TeamCard key={m.name} member={m} dark />
           ))}
         </div>
-      </section>
-      <section className="w-full bg-white py-[15px]">
+      </motion.section>
+      <motion.section
+        initial={{ opacity: 0, y: 300 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 1.2, ease: easeOut }}
+        className="w-full bg-white py-[15px]"
+      >
         <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-y-12 md:grid-cols-3 md:gap-x-0 md:gap-y-0">
           {BOTTOM_ROW.map((m) => (
             <TeamCard key={m.name} member={m} dark={false} />
           ))}
         </div>
-      </section>
+      </motion.section>
     </>
   );
 }
