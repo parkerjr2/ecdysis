@@ -22,8 +22,12 @@ export function VisitUs({ mapSide = "left" }: Props = {}) {
     ? "md:grid-cols-[648fr_792fr]"
     : "md:grid-cols-2";
   return (
-    <section
+    <motion.section
       id="booking"
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
       className="relative w-full bg-white py-[40px] text-black"
     >
       <div className={`mx-auto grid w-full grid-cols-1 ${gridCols}`}>
@@ -115,6 +119,6 @@ export function VisitUs({ mapSide = "left" }: Props = {}) {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

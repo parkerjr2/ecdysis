@@ -32,7 +32,14 @@ export function Gallery() {
   const [openIndex, setOpenIndex] = useState(-1);
 
   return (
-    <section id="gallery" className="relative w-full bg-ec-dark py-20 md:py-24 lg:py-28">
+    <motion.section
+      id="gallery"
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-ec-dark py-20 md:py-24 lg:py-28"
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -93,6 +100,6 @@ export function Gallery() {
           container: { backgroundColor: "rgba(0, 0, 0, 0.8)" },
         }}
       />
-    </section>
+    </motion.section>
   );
 }

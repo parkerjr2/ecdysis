@@ -14,8 +14,12 @@ const fadeUp = {
 
 export function OurPeople() {
   return (
-    <section
+    <motion.section
       id="team"
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
       className="relative grid w-full grid-cols-1 items-center bg-white text-black md:min-h-[600px] md:grid-cols-[590fr_850fr]"
     >
       <motion.div
@@ -50,6 +54,6 @@ export function OurPeople() {
           className="object-cover"
         />
       </motion.div>
-    </section>
+    </motion.section>
   );
 }

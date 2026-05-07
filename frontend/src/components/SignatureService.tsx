@@ -46,7 +46,13 @@ export function SignatureService({
     : "md:pl-[19px] md:pr-[125px]";
 
   return (
-    <section className="relative w-full bg-ec-dark py-[85px]">
+    <motion.section
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-ec-dark py-[85px]"
+    >
       <div className="grid w-full grid-cols-1 md:grid-cols-2">
         <motion.div
           {...fadeUp}
@@ -106,6 +112,6 @@ export function SignatureService({
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

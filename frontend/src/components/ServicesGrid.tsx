@@ -40,7 +40,14 @@ export function ServicesGrid() {
   const rightX = useTransform(scrollYProgress, [0, 0.56], [-220, 0]);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-ec-dark pb-24 lg:pb-32">
+    <motion.section
+      ref={sectionRef}
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-ec-dark pb-24 lg:pb-32"
+    >
       <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 items-center gap-x-8 gap-y-12 px-6 md:grid-cols-[1fr_minmax(0,420px)_1fr] md:gap-x-12 lg:gap-x-16">
         <ServiceColumn items={LEFT} align="right" x={leftX} />
 
@@ -74,7 +81,7 @@ export function ServicesGrid() {
           FULL SERVICES MENU
         </Link>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }
 
