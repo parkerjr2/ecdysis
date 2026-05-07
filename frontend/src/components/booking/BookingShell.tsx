@@ -59,7 +59,13 @@ export function BookingShell() {
   return (
     <>
       <div aria-hidden className="h-[80px] w-full bg-ec-dark" />
-      <section className="ecdy-booking w-full">
+      <motion.section
+        initial={{ opacity: 0, y: 300 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 1.2, ease: easeOut }}
+        className="ecdy-booking w-full"
+      >
         <StepProgress />
 
       <AnimatePresence mode="wait">
@@ -78,7 +84,7 @@ export function BookingShell() {
           {state.currentStep === "confirmed" && <ConfirmedStep />}
         </motion.div>
       </AnimatePresence>
-      </section>
+      </motion.section>
     </>
   );
 }
