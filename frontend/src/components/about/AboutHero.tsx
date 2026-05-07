@@ -13,7 +13,13 @@ const fadeUp = {
 
 export function AboutHero() {
   return (
-    <section className="relative w-full bg-ec-dark">
+    <motion.section
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-ec-dark"
+    >
       <div aria-hidden className="h-[150px] w-full bg-ec-dark" />
       <div
         className="relative min-h-[720px] w-full bg-ec-dark bg-cover bg-center bg-no-repeat py-[15px]"
@@ -87,6 +93,6 @@ export function AboutHero() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

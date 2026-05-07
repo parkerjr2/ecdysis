@@ -13,7 +13,13 @@ const fadeUp = {
 
 export function AboutFounders() {
   return (
-    <section className="relative w-full bg-ec-dark">
+    <motion.section
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-ec-dark"
+    >
       <div className="mx-auto flex w-full max-w-[1500px] flex-col items-stretch md:flex-row">
         <motion.div
           {...fadeUp}
@@ -70,6 +76,6 @@ export function AboutFounders() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

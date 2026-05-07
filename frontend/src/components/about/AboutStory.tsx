@@ -13,7 +13,13 @@ const fadeUp = {
 
 export function AboutStory() {
   return (
-    <section className="relative w-full bg-white">
+    <motion.section
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-white"
+    >
       <div className="flex w-full flex-col items-stretch md:flex-row md:items-center">
         <motion.div
           {...fadeUp}
@@ -67,6 +73,6 @@ export function AboutStory() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
