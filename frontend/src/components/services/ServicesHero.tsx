@@ -12,7 +12,13 @@ const fadeUp = {
 
 export function ServicesHero() {
   return (
-    <section className="relative w-full bg-ec-dark">
+    <motion.section
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="relative w-full bg-ec-dark"
+    >
       <div aria-hidden className="h-[150px] w-full bg-ec-dark" />
       <div
         className="relative min-h-[80vh] w-full bg-ec-dark py-[15px]"
@@ -33,6 +39,6 @@ export function ServicesHero() {
           </h2>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

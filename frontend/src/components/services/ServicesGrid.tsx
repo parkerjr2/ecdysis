@@ -157,7 +157,13 @@ function ServiceCategory({ category }: { category: Category }) {
 
 export function ServicesGrid() {
   return (
-    <section className="w-full bg-ec-dark pb-[15px]">
+    <motion.section
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 1.2, ease: easeOut }}
+      className="w-full bg-ec-dark pb-[15px]"
+    >
       <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-x-0 gap-y-12 px-[60px] pt-[50px] md:grid-cols-2">
         <div className="flex flex-col gap-12 bg-[#E6DAC6] px-[25px] pb-0 pt-[30px]">
           {LEFT_COLUMN.map((cat) => (
@@ -170,6 +176,6 @@ export function ServicesGrid() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
